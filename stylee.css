@@ -1,0 +1,439 @@
+@import url(https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap);
+
+@keyframes pop-up {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes swirl {
+    0% {
+        background-color: transparent;
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(90deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* rotates the border color */
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+
+:root {
+    --modmenu-width: 400px;
+}
+
+.modmenu {
+    display: block;
+    position: absolute;
+    transition: transform 0.5s ease;
+    width: var(--modmenu-width);
+    transform: translate(-50%, -50%) scale(1);
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 45px;
+    top: 50%;
+    left: 50%;
+}
+
+.modmenu.fade-out {
+    /* super cool fade-out animation */
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+@media (hover: hover) {
+    .modmenu:hover {
+        transform: translate(-50%, -50%) scale(1.06);
+    }
+}
+
+/*CREDITS: https://codepen.io/gayane-gasparyan/pen/jOmaBQK*/
+.modmenu::before {
+    content: "";
+    background-image: linear-gradient(var(--rotate),
+            #87310d, #e10e74 43%, #1f0547);
+    position: absolute;
+    animation: spin 2.5s linear infinite;
+    width: 110%;
+    height: 110%;
+    border-radius: 50px;
+    z-index: -1;
+    top: -5%;
+    left: -5%;
+}
+
+.modmenu::after {
+    position: absolute;
+    content: "";
+    margin: auto;
+    background-image: linear-gradient(var(--rotate),
+            #87310d, #e10e74 43%, #1f0547);
+    transition: opacity 0.5s;
+    animation: spin 2.5s linear infinite;
+    border-radius: 50px;
+    filter: blur(20px);
+    opacity: 1;
+    inset: 0;
+    /* in my opinion inset > topleftrightbottom = 0*/
+    z-index: -1;
+}
+
+.informationText {
+    visibility: hidden;
+    position: absolute;
+    text-align: center;
+    color: white;
+    /* if your browser doesnt support gradient */
+    background: #ff00f2;
+    border: #2a003c 3px solid;
+    background: radial-gradient(circle, #ff00f2 40%, #2c1c29 85%);
+    /*2c1c29 is from pulary's profile*/
+    transform: translateY(100px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    margin-top: 100px;
+    margin-left: 15px;
+    padding-top: 7px;
+    width: 120px;
+    height: 55px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.informationText::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-color: transparent transparent #2a003c transparent;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -36px;
+    border-width: 9px;
+}
+
+
+.HoverText:hover+.informationText {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+}
+
+/* i know you can just combind them but for the names ;d*/
+.muteChat {
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 14px;
+    font-size: 17px;
+}
+
+.loopSong {
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 14px;
+    font-size: 17px;
+}
+
+.header {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.menuColor {
+    color: #fff;
+    padding-left: 15px;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #e71818, #1f26ba);
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.infoText {
+    line-height: 30px;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.infoStatuses {
+    line-height: 40px;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.chatDisplay {
+    position: absolute;
+    display: flex;
+    width: 32rem;
+    height: 100px;
+    padding: 5px;
+    background: #fff3f3;
+    border: orange;
+    top: 80%;
+    left: 30.5%;
+    font-size: 2.5rem;
+    justify-content: flex-start;
+
+}
+
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+
+    100% {
+        --rotate: 360deg;
+    }
+}
+
+input {
+    background: -webkit-linear-gradient(#eee, #333);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+::selection {
+    color: #fff;
+    background: #4285f4;
+}
+
+.wrapper {
+    width: 370px;
+    /*margin: 85px auto 0;*/
+}
+
+.select-btn,
+li {
+    font-size: 20px;
+    padding: 6px 6px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.select-btn {
+    padding: 0 20px;
+    font-size: 22px;
+    background: linear-gradient(lavender, indigo);
+    border-radius: 7px;
+    display: initial;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.select-btn i {
+    font-size: 31px;
+    transition: transform 0.3s linear;
+}
+
+.wrapper.active .select-btn i {
+    transform: rotate(-180deg);
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    margin-top: 15px;
+    background: linear-gradient(lavender, indigo);
+    border-radius: 7px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin: 10px 0 0 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: transform 1.25s cubic-bezier(0.72, -0.09, 0.58, 1.37), opacity 1.25s ease, padding 0.5s ease;
+}
+
+.wrapper.active .content {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 20px;
+    transition: transform 1.25s cubic-bezier(0.72, -0.09, 0.58, 1.37), opacity 1.25s ease, padding 0.5s ease;
+}
+
+.content .search {
+    position: relative;
+}
+
+.search i {
+    top: 50%;
+    left: 15px;
+    color: #999;
+    font-size: 20px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.search input {
+    height: 40px;
+    width: 70%;
+    outline: none;
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 0 20px 0 43px;
+    border: 1px solid #B3B3B3;
+}
+
+.search input:focus {
+    padding-left: 42px;
+    border: 2px solid #999999;
+}
+
+.search input::placeholder {
+    color: #bfbfbf;
+}
+
+.content .options,
+.durations {
+    margin-top: 10px;
+    max-height: 220px;
+    padding-left: 5px;
+}
+
+.options,
+.durations {
+    overflow-y: scroll;
+}
+
+.scrollbar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 220px;
+}
+
+/*hide the scrollbar on left*/
+.options::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: rgb(166, 166, 255);
+    border-radius: 25px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(194, 0, 194);
+    border-radius: 25px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(41, 0, 41);
+}
+
+.options li {
+    height: 50px;
+    padding: 6px 6px;
+    font-size: 20px;
+}
+
+.options li:hover,
+li.selected {
+    border-radius: 5px;
+    background: purple;
+}
+
+.heading {
+    display: flex;
+    margin-top: 15px;
+    font-size: 25px;
+    overflow: hidden;
+    position: relative;
+}
+
+.title {
+    padding: 0px 10px 5px 20px;
+    /* top, right, bottom, left */
+    border-bottom: 2px solid #ffff;
+}
+
+.whiteline {
+    border-right: 2px solid #ffff;
+}
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* hides the default checkbox */
+.custom-checkbox input {
+    display: none;
+}
+
+.custom-checkbox label {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    /* adjust  height and width of the checkbox */
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: 2px solid lavender;
+    border-radius: 3px;
+    transition: background-color 0.3s, border-color 0.5s;
+}
+
+/* checkmark style */
+.custom-checkbox label:after {
+    content: "✓";
+    /*proffesional copy pasted checkamrk from gogle*/
+    position: absolute;
+    left: 25%;
+    top: -10%;
+    /* goofy rotation */
+    transform: rotate(180deg);
+    color: #8a2ad0;
+    opacity: 0;
+    /* t r a n s i t i o n */
+    transition: opacity 0.3s, color 0.5s, transform 1.25s;
+    /* pls give me this ms */
+    transition-delay: 1ms;
+}
+
+.custom-checkbox input:checked+label:after {
+    opacity: 1;
+    /* goofy rotation */
+    transform: rotateY(360deg);
+}
+
+/* when its checked  */
+.custom-checkbox input:checked+label {
+    animation: swirl 0.6s ease-in-out;
+    background-color: #500a50;
+    border-color: #8a2ad0;
+}
+
+.checkbox-label {
+    margin-left: 30px;
+}
+
+body {
+    background-color: #2196f3;
+}
+
+* {
+    font-family: 'Hammersmith One';
+}

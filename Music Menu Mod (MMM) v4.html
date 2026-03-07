@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMM</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.6.4.min.js">
+</head>
+
+<body>
+    <div class="modmenu">
+        <div class="menuColor">
+            <legend class="header">
+                Music Menu:
+            </legend>
+            <!-- informational info -->
+            <div class="infoText">
+                Information: Press "P" to open/close menu!
+                Press "C" to start/stop the music!
+            </div>
+
+            <!-- mute chat checkbox -->
+            <div class="muteChat">
+                <div class="HoverText">Mute Chat?</div>
+                <div class="informationText">mutes the song lyrics</div>
+                <div class="custom-checkbox">
+                    <input type="checkbox" id="mutechat">
+                    <label for="mutechat" class="checkbox-label"></label>
+                </div>
+            </div>
+            <br>
+            <!-- loop songs checkbox -->
+            <div class="loopSong">
+                <div class="HoverText">Loop songs??</div>
+                <div class="informationText">loops the current song</div>
+                <div class="custom-checkbox">
+                    <input type="checkbox" id="loopsong">
+                    <label for="loopsong" class="checkbox-label"></label>
+                </div>
+            </div>
+            <!-- song selection -->
+            <div class="wrapper">
+                <div class="select-btn" onclick="handleSongSelection()">
+                    <span>Select Song</span>
+                    <i class="uil uil-angle-down"></i>
+                </div>
+                <div class="content">
+                    <div class="search">
+                        <i class="uil uil-search"></i>
+                        <input spellcheck="false" type="text" placeholder="search song title/author">
+                    </div>
+                    <div class="heading" id="scrollbar">
+                        <div class="whiteline">
+                            <div class="title">Song Names</div>
+                            <div class="undersection">
+                                <ul class="options scrollbar"></ul>
+                            </div>
+                        </div>
+                        <div class="secondrow">
+                            <div class="title">Lengths</div>
+                            <ul class="durations scrollbar"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Music Status and Music State -->
+            <div class="infoStatuses">
+                <div id="musicStatus">Music Status: False</div>
+                <div id="currentlyPlaying"> Currently Playing: NULL</div>
+            </div>
+        </div>
+    </div>
+    <div class="chatDisplay" id="chatDisplay"></div>
+    <script src="scriptt.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</body>
+
+</html>
