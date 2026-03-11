@@ -1,8 +1,18 @@
-const wrapper = document.querySelector(".wrapper"),
-    selectBtn = wrapper.querySelector(".select-btn"),
-    searchInp = wrapper.querySelector("input"),
-    durations1 = wrapper.querySelector(".durations"),
+let wrapper, selectBtn, searchInp, durations1, options;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    wrapper = document.querySelector(".wrapper");
+    selectBtn = wrapper.querySelector(".select-btn");
+    searchInp = wrapper.querySelector("input");
+    durations1 = wrapper.querySelector(".durations");
     options = wrapper.querySelector(".options");
+
+    selectBtn.addEventListener("click", () => {
+        wrapper.classList.toggle("active");
+    });
+
+});
 
 var musicIdToName = [{
         id: 0,
@@ -100,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+//selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
 let durations = [];
 
 musicIdToName.forEach(song => {
