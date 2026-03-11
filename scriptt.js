@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     options = wrapper.querySelector(".options");
 
     selectBtn.addEventListener("click", () => {
+        console.log("menu open");
         wrapper.classList.toggle("active");
     });
 
@@ -98,15 +99,6 @@ window.addEventListener('DOMContentLoaded', function () {
         options.scrollTop += scrollAmount;
         durations.scrollTop += scrollAmount;
         //scrollbar.scrollTop += scrollAmount; 
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const wrapper = document.querySelector('.wrapper');
-    const selectBtn = document.querySelector('.select-btn');
-
-    selectBtn.addEventListener('click', function () {
-        wrapper.classList.toggle('active');
     });
 });
 
