@@ -363,6 +363,7 @@ li.selected {
 }
 
 .title {
+    font-size: 25px;
     padding: 0px 10px 5px 20px;
     /* top, right, bottom, left */
     border-bottom: 2px solid #ffff;
