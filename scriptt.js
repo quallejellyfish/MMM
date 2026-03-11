@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-//selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
 let durations = [];
 
 musicIdToName.forEach(song => {
