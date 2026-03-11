@@ -301,14 +301,14 @@ li {
     color: #bfbfbf;
 }
 
-.content .options,
+.content .options1,
 .durations {
     margin-top: 10px;
     max-height: 220px;
     padding-left: 5px;
 }
 
-.options,
+.options1,
 .durations {
     overflow-y: scroll;
 }
@@ -342,13 +342,13 @@ li {
     background: rgb(41, 0, 41);
 }
 
-.options li {
+.options1 li {
     height: 50px;
     padding: 6px 6px;
     font-size: 20px;
 }
 
-.options li:hover,
+.options1 li:hover,
 li.selected {
     border-radius: 5px;
     background: purple;
