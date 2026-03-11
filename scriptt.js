@@ -315,7 +315,7 @@ let spamModeActive = false,
     chatMessages = [];
 
 // chat display varible
-let chatDisplay = document.getElementById("chatDisplay"),
+let /*chatDisplay = document.getElementById("chatDisplay"),*/
     currentlyPlaying = document.getElementById("currentlyPlaying");
 
 // how to spell varible
@@ -335,7 +335,7 @@ function toggleChatSpamMode() {
         //falsing status
         currentlyPlaying.innerHTML = "Currently Playing: none";
         musicStatus.innerHTML = `Music Status: OFF`
-        chatDisplay.innerHTML = "";
+        //chatDisplay.innerHTML = "";
 
         //audio deactivation
         if (selectedSongAudio) {
@@ -351,7 +351,7 @@ function toggleChatSpamMode() {
         spamModeActive = true;
         currentlyPlaying.innerHTML = `Currently Playing: ${selectedSongName}`;
         musicStatus.innerHTML = `Music Status: ${spamModeActive}`
-        chatDisplay.innerHTML = "";
+        //chatDisplay.innerHTML = "";
 
 
         //audio output
@@ -389,7 +389,8 @@ function handleMuteChat() {
     chatMuted = this.checked;
     console.log("chat muted status", chatMuted);
     if (chatMuted) {
-        chatDisplay.innerHTML = "";
+        //chatDisplay.innerHTML = "";
+        packet("6", "")
     }
 }
 document.getElementById('mutechat').addEventListener('change', handleMuteChat);
