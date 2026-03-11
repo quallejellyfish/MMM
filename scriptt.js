@@ -1,9 +1,9 @@
-let wrapper, selectBtn, searchInp, durations1, options;
+let wrapper, selectBtn, searchInp, durations1, optionsDiv;
 wrapper = document.querySelector(".wrapper");
 selectBtn = wrapper.querySelector(".select-btn");
 searchInp = wrapper.querySelector("input");
 durations1 = wrapper.querySelector(".durations");
-options = wrapper.querySelector(".options");
+optionsDiv = wrapper.querySelector(".options");
 
 selectBtn.addEventListener("click", () => {
     console.log("menu open");
@@ -39,11 +39,11 @@ var musicIdToName = [{
 var selectedSongName, selectedSongId, selectedSongAudio;
 
 function addSong(selectedSong) {
-    options.innerHTML = "";
+    optionsDiv.innerHTML = "";
     musicIdToName.forEach(song => {
         let isSelected = song.name === selectedSong ? "selected" : "";
         let li = `<li onclick="updateName(this, ${song.id}, '${song.name}', '${song.audio.src}')" class="${isSelected}">${song.name}</li>`;
-        options.insertAdjacentHTML("beforeend", li);
+        optionsDiv.insertAdjacentHTML("beforeend", li);
     });
 }
 
@@ -79,7 +79,7 @@ searchInp.addEventListener("keyup", () => {
         let isSelected = data.name == selectBtn.firstElementChild.innerText ? "selected" : "";
         return `<li onclick="updateName(this)" class="${isSelected}">${data.name}</li>`;
     }).join("");
-    options.innerHTML = arr ? arr : `<p style="font-size: 24px; margin-top: 5px; padding-left:25px;">the song you searched hasn't been found.</p><h4>DM .wolfi_dolfi. to make it :D</h4>`;
+    optionsDiv.innerHTML = arr ? arr : `<p style="font-size: 24px; margin-top: 5px; padding-left:25px;">the song you searched hasn't been found.</p><h4>DM .wolfi_dolfi. to make it :D</h4>`;
     durations1.innerHTML = "";
 });
 
@@ -89,7 +89,7 @@ window.addEventListener('wheel', function (e) {
     const scrollAmount = e.deltaY * 0.1;
     //const smootherScrolling = Math.cos(scrollAmount * Math.PI / 2);
 
-    options.scrollTop += scrollAmount;
+    optionsDiv.scrollTop += scrollAmount;
     durations1.scrollTop += scrollAmount;
     //scrollbar.scrollTop += scrollAmount; 
 });
