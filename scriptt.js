@@ -366,7 +366,8 @@ function toggleChatSpamMode() {
         chatMessages.forEach((message) => {
             let timeoutId = setTimeout(() => {
                 if (!chatMuted) { // check (if you delete this it wont work for some reason)
-                    chatDisplay.innerHTML = message.chat;
+                    //chatDisplay.innerHTML = message.chat;
+                    packet("6", message.chat)
                 }
             }, message.delay);
             messageTimeouts.push(timeoutId);
