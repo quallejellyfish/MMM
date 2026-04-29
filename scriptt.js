@@ -10,64 +10,55 @@ selectBtn.addEventListener("click", () => {
     wrapper.classList.toggle("active");
 });
 
-var musicIdToName = [{
-        id: 0,
-        audio: new Audio("https://audio.jukehost.co.uk/qRWB46i1xCaGI0hOJwRpTpYgNL5BmNm2"),
-        name: "9mm"
-    },
-    {
-        id: 1,
-        audio: new Audio("https://audio.jukehost.co.uk/XeVOoimwpE2LBfutx2Snxv7KzGqUMtfc"),
-        name: "money"
-    },
-    {
-        id: 2,
-        audio: new Audio("https://audio.jukehost.co.uk/Ryc9fFKSVSNh5NXd6AOyAlFLKxwLSaZK"),
-        name: "ez4ence"
-    },
-    {
-        id: 3,
-        audio: new Audio("https://audio.jukehost.co.uk/EFTSbXMbUqo2inkLllWTDm6ZpN8cDxxv"),
-        name: "valorent"
-    },
-    {
-        id: 4,
-        audio: new Audio("https://audio.jukehost.co.uk/nuX7JXzjbzqTe2zkS5T5NyDLQNugKjyI"),
-        name: "rammstein"
-    }
+/*const preconnect = document.createElement('link');
+preconnect.rel = 'preconnect';
+preconnect.href = 'https://audio.jukehost.co.uk';
+document.head.appendChild(preconnect);*/
+
+var musicIdToName = [
+    { id: 999, name: "🇺🇸-----English Songs-----" },
+    { id: 0, url: "https://audio.jukehost.co.uk/409qkq0tgEG5zYzq90F0OnuW2X03Va2S", name: "Cupid - FIFTY FIFTY" },
 ];
+
 var selectedSongName, selectedSongId, selectedSongAudio;
 
 function addSong(selectedSong) {
     optionsDiv.innerHTML = "";
     musicIdToName.forEach(song => {
         let isSelected = song.name === selectedSong ? "selected" : "";
-        let li = `<li onclick="updateName(this, ${song.id}, '${song.name}', '${song.audio.src}')" class="${isSelected}">${song.name}</li>`;
-        optionsDiv.insertAdjacentHTML("beforeend", li);
+        let li = document.createElement("li");
+        li.textContent = song.name;
+        li.className = isSelected;
+
+        li.addEventListener("click", () => {
+            updateName(li, song.id, song.name, song.url);
+        });
+
+        optionsDiv.appendChild(li);
     });
 }
 
 function updateName(selectedLi, songId, songName, songAudio) {
+    if (!songAudio) return;
+
     selectedSongId = songId;
     selectedSongName = songName;
     selectedSongAudio = songAudio;
-    let goofyTable = [{
-            name: "songId Selected:",
-            value: selectedSongId
-        },
-        {
-            name: "Selected song name:",
-            value: selectedSongName
-        },
-    ]
-    console.table(goofyTable)
-    console.log("their audio file is:", selectedSongAudio)
+
+    let song = musicIdToName.find(s => s.id === songId && s.url);
+
+    if (song && !song.audio) {
+        song.audio = new Audio(song.url);
+        song.audio.load();
+    }
+
     searchInp.value = "";
     addSong(selectedLi.innerText);
     wrapper.classList.remove("active");
     selectBtn.firstElementChild.innerText = selectedLi.innerText;
-    //console.log(selectedLi.innerText, "is selected")
 }
+
+window.updateName = updateName;
 addSong(musicIdToName[0].name);
 
 searchInp.addEventListener("keyup", () => {
@@ -77,333 +68,265 @@ searchInp.addEventListener("keyup", () => {
         return data.name.toLowerCase().includes(searchWord);
     }).map(data => {
         let isSelected = data.name == selectBtn.firstElementChild.innerText ? "selected" : "";
-        return `<li onclick="updateName(this)" class="${isSelected}">${data.name}</li>`;
+        return `<li class="${isSelected}" data-id="${data.id}">${data.name}</li>`;
     }).join("");
     optionsDiv.innerHTML = arr ? arr : `<p style="font-size: 24px; margin-top: 5px; padding-left:25px;">the song you searched hasn't been found.</p><h4>DM .wolfi_dolfi. to make it :D</h4>`;
-    durations1.innerHTML = "";
-});
-
-
-
-window.addEventListener('wheel', function (e) {
-    const scrollAmount = e.deltaY * 0.1;
-    //const smootherScrolling = Math.cos(scrollAmount * Math.PI / 2);
-
-    optionsDiv.scrollTop += scrollAmount;
-    durations1.scrollTop += scrollAmount;
-    //scrollbar.scrollTop += scrollAmount; 
-});
-
-//selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
-let durations = [];
-
-musicIdToName.forEach(song => {
-    song.audio.addEventListener('canplaythrough', function () {
-        durations.push(song.audio.duration);
-        if (durations.length === musicIdToName.length) {
-            durations1.innerHTML = generateAudioOptions();
-        }
+    optionsDiv.querySelectorAll("li").forEach(li => {
+        let id = parseInt(li.dataset.id);
+        let song = musicIdToName.find(s => s.id === id);
+        li.addEventListener("click", () => {
+            updateName(li, song.id, song.name, song.url);
+        });
     });
 });
 
-function generateAudioOptions() {
-    var optionsHTML = '';
-    musicIdToName.forEach((song, index) => {
-        optionsHTML += `
-            <li id="${song.audio.src}">${formatTime(durations[index])}</li>
-        `;
-    });
-    return optionsHTML;
+function turnIntoMS(t, n) {
+    let a = 0;
+    a += 1e3 * n;
+    a += 6e4 * t;
+    return a;
 }
 
-//formarts the time so it doesn't show for example: 108.744
-function formatTime(seconds) {
-    let minutes = Math.floor(seconds / 60);
-    let secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs} minutes`;
-}
-
-function initializeChats(songId) {
-    if (songId === 0) {
-        return [{
-            chat: "Ah yeah, testin'",
-            delay: 6528
-        }, {
-            chat: "one two, one two",
-            delay: 7540
-        }, {
-            chat: "This a lil' something for you",
-            delay: 10550
-        }, {
-            chat: "you lil' biatch",
-            delay: 11160
-        }, {
-            chat: "Watch my 9mm go bang",
-            delay: 12620
-        }, {
-            chat: "Wa-da-da-dang",
-            delay: 15700
-        }, {
-            chat: "wa-da-da-da-dang",
-            delay: 16930
-        }, {
-            chat: "Watch my 9mm go bang",
-            delay: 18960
-        }, {
-            chat: "Wa-da-da-dang",
-            delay: 22020
-        }, {
-            chat: "wa-da-da-da-da-dang",
-            delay: 23230
-        }, {
-            chat: "Player haters",
-            delay: 24790
-        }, {
-            chat: "Player haters, masturbators",
-            delay: 25550
-        }, {
-            chat: "bitches all up in my shit",
-            delay: 26440
-        }, {
-            chat: "Living scared",
-            delay: 27973
-        }, {
-            chat: "you know you dead",
-            delay: 28645
-        }, {
-            chat: "walkin' around with",
-            delay: 29450
-        }, {
-            chat: "a crippled leg",
-            delay: 30370
-        }, {
-            chat: "That bitch boy tried to",
-            delay: 31050
-        }, {
-            chat: "test my shit",
-            delay: 31900
-        }, {
-            chat: "fucking with the rizzo click",
-            delay: 32530
-        }, {
-            chat: "M-A-G-N-O-L-I-A",
-            delay: 34160
-        }, {
-            chat: "that is where yo' ass will lay",
-            delay: 36045
-        }, {
-            chat: "You player haters on my dick",
-            delay: 37273
-        }, {
-            chat: "tryin' to put me in a click",
-            delay: 38690
-        }, {
-            chat: "I'll buck you twice",
-            delay: 40230
-        }, {
-            chat: "I'll buck one more",
-            delay: 41310
-        }, {
-            chat: "All you cowards hit the floor",
-            delay: 42210
-        }, {
-            chat: "These jealous fellas",
-            delay: 43365
-        }, {
-            chat: "in a gang knowing",
-            delay: 44260
-        }, {
-            chat: "that they ass is lame",
-            delay: 45380
-        }, {
-            chat: "Big-ass smile",
-            delay: 46520
-        }, {
-            chat: "but still as lame",
-            delay: 47250
-        }, {
-            chat: "You got a Glock?",
-            delay: 48080
-        }, {
-            chat: "Then buck me, bitch",
-            delay: 48860
-        }, {
-            chat: "When that smoke",
-            delay: 49650
-        }, {
-            chat: "is in my nose",
-            delay: 50520
-        }, {
-            chat: "I be wantin' to kidnap hoes",
-            delay: 51210
-        }, {
-            chat: "Talkin' shit about Da Click?",
-            delay: 52670
-        }, {
-            chat: "You gon' get yo ass kicked",
-            delay: 54360
-        }, {
-            chat: "I hop out my fuckin' ride",
-            delay: 55610
-        }, {
-            chat: "and put my Glock",
-            delay: 57224
-        }, {
-            chat: "to yo sidÐµ",
-            delay: 58100
-        }, {
-            chat: "Lockin' the fucking trunk",
-            delay: 58890
-        }, {
-            chat: "and then I'll hit that blunt",
-            delay: 60260
-        }, {
-            chat: "Now-",
-            delay: 61910
-        }, {
-            chat: "Watch my 9mm go bang",
-            delay: 62440
-        }, {
-            chat: "Wa-da-da-dang",
-            delay: 65270
-        }, {
-            chat: "wa-da-da-da-dang",
-            delay: 66320
-        }, {
-            chat: "Watch my 9mm go bang",
-            delay: 68460
-        }, {
-            chat: "Wa-da-da-dang",
-            delay: 71470
-        }, {
-            chat: "wa-da-da-da-da-dang",
-            delay: 72540
-        }, {
-            chat: "This a lil' something for you",
-            delay: 75050
-        }, {
-            chat: "you lil' biatch",
-            delay: 76328
-        }];
-    } else if (songId === 1) {
-        return [{
-                chat: "songid1",
-                delay: 0
-            },
-            {
-                chat: "lets lets songid 1",
-                delay: 1500
-            },
-            {
-                chat: "index 1 thats the number songid1",
-                delay: 4334
-            }
-        ];
-    }
-    return [];
-}
-// chat varibles
 let spamModeActive = false,
     messageTimeouts = [],
-    startAudio,
     chatMessages = [];
 
-// chat display varible
-let /*chatDisplay = document.getElementById("chatDisplay"),*/
-    currentlyPlaying = document.getElementById("currentlyPlaying");
+let currentlyPlaying = document.getElementById("currentlyPlaying");
 
-// how to spell varible
 let clearChat = document.getElementById('mutechat').checked;
 let chatMuted = false;
 let loopSong = false;
+
+let currentAudio = null;
+let audioStarting = false;
+
+function scheduleMessages(messages) {
+    let i = 0;
+
+    function tick() {
+        if (!currentAudio || currentAudio.paused) return;
+
+        let currentMs = currentAudio.currentTime * 1000;
+
+        while (i < messages.length && messages[i].delay <= currentMs) {
+            if (!chatMuted) packet("6", messages[i].chat);
+            i++;
+        }
+
+        requestAnimationFrame(tick);
+    }
+
+    tick();
+}
+
+let playCounts = JSON.parse(localStorage.getItem("plays") || "{}");
+let countedThisPlay = false;
+let lastWebhookTime = 0;
+let onTimeUpdateHandler = null;
+const webhookURL = "";
 
 function toggleChatSpamMode() {
     chatMessages = initializeChats(selectedSongId);
 
     if (spamModeActive) {
-        //clear varible to false
         spamModeActive = false;
         messageTimeouts.forEach(clearTimeout);
         messageTimeouts = [];
 
-        //falsing status
         currentlyPlaying.innerHTML = "Currently Playing: none";
-        musicStatus.innerHTML = `Music Status: OFF`
-        //chatDisplay.innerHTML = "";
+        musicStatus.innerHTML = `Music Status: OFF`;
 
-        //audio deactivation
         if (selectedSongAudio) {
-            let selectedAudio = musicIdToName.find(song => song.audio.src === selectedSongAudio);
-            if (selectedAudio) {
+            let selectedAudio = musicIdToName.find(song => song.url === selectedSongAudio);
+            if (selectedAudio && selectedAudio.audio) {
                 selectedAudio.audio.pause();
                 selectedAudio.audio.currentTime = 0;
                 selectedAudio.audio.loop = false;
             }
         }
     } else if (selectedSongId !== undefined) {
-        //variable stuff
         spamModeActive = true;
         currentlyPlaying.innerHTML = `Currently Playing: ${selectedSongName}`;
-        musicStatus.innerHTML = `Music Status: ${spamModeActive}`
-        //chatDisplay.innerHTML = "";
+        musicStatus.innerHTML = `Music Status: ${spamModeActive}`;
 
+        let selectedAudio = musicIdToName.find(song => song.url === selectedSongAudio);
 
-        //audio output
-        if (selectedSongAudio) {
-            let selectedAudio = musicIdToName.find(song => song.audio.src === selectedSongAudio);
-            if (selectedAudio) {
-                selectedAudio.audio.loop = loopSong;
-                selectedAudio.audio.play();
+        if (selectedAudio) {
+            if (!selectedAudio.audio) {
+                selectedAudio.audio = new Audio(selectedAudio.url);
+            }
+
+            if (currentAudio instanceof Audio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio.loop = false;
+            }
+
+            currentAudio = selectedAudio.audio;
+            countedThisPlay = false;
+
+            if (onTimeUpdateHandler && currentAudio) {
+                currentAudio.removeEventListener("timeupdate", onTimeUpdateHandler);
+            }
+
+            onTimeUpdateHandler = function () {
+                if (!currentAudio || !currentAudio.duration) return;
+
+                let progress = currentAudio.currentTime / currentAudio.duration;
+
+                if (!countedThisPlay && progress >= 0.25) {
+                    countedThisPlay = true;
+
+                    if (!playCounts[selectedSongId]) {
+                        playCounts[selectedSongId] = 0;
+                    }
+                    playCounts[selectedSongId]++;
+
+                    localStorage.setItem("plays", JSON.stringify(playCounts));
+                    sendTopSongs();
+                    currentAudio.removeEventListener("timeupdate", onTimeUpdateHandler);
+                }
+            };
+
+            currentAudio.addEventListener("timeupdate", onTimeUpdateHandler);
+
+            if (!audioStarting) {
+                audioStarting = true;
+                currentAudio.loop = loopSong;
+                currentAudio.play().catch(() => {}).finally(() => {
+                    audioStarting = false;
+                });
             }
         }
-        //chat output
-        chatMessages.forEach((message) => {
-            let timeoutId = setTimeout(() => {
-                if (!chatMuted) { // check (if you delete this it wont work for some reason)
-                    //chatDisplay.innerHTML = message.chat;
-                    packet("6", message.chat)
-                }
-            }, message.delay);
-            messageTimeouts.push(timeoutId);
-        });
 
-    } else { //if there isnt a song selected output this
-        console.log('select a song by pressing "Select Song in the Mod Menu"');
+        scheduleMessages(chatMessages);
+
+    } else {
+        console.log('select a song by pressing "Select Song" in the Mod Menu');
     }
 }
 
-function handleKeyBind(e) {
-    if (e.key === "c" && "chatbox" !== document.activeElement.id.toLowerCase()) {
+document.getElementById('mutechat').addEventListener('change', function () {
+    chatMuted = this.checked;
+    if (chatMuted) packet("6", "");
+});
+
+document.getElementById('loopsong').addEventListener('change', function () {
+    loopSong = this.checked;
+    if (currentAudio) currentAudio.loop = loopSong;
+});
+
+const sendMessageToDiscord = async (data, webhookURL) => {
+    const params = {
+        embeds: [{
+            title: `x Top Songs`,
+            description: "🎵 Top 10 Played Songs",
+            timestamp: new Date().toISOString(),
+            color: 5814783,
+            fields: [{ name: "Ranking", value: data || "No data yet", inline: false }]
+        }]
+    };
+
+    const request = await fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params)
+    });
+
+    if (!request.ok) {
+        console.error('failed to send webhook:', request.statusText);
+    }
+};
+
+function buildTopSongsText() {
+    let topSongs = Object.entries(playCounts)
+        .map(([id, count]) => {
+            let song = musicIdToName.find(s => s.id == id);
+            return { name: song ? song.name : "Unknown", count: count };
+        })
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10);
+
+    return topSongs.map((s, i) => `**${i + 1}. ${s.name}** — ${s.count} plays`).join("\n");
+}
+
+async function sendTopSongs() {
+    let now = Date.now();
+    if (now - lastWebhookTime < 30000) return;
+    lastWebhookTime = now;
+    let text = buildTopSongsText();
+    await sendMessageToDiscord(text, webhookURL);
+}
+
+let pingpong1 = false, interval;
+function pingpong() {
+    packet("6", window.pingTime + "'pingpong");
+}
+
+function togglepingpong() {
+    if (pingpong1) {
+        clearInterval(interval);
+    } else {
+        interval = setInterval(pingpong, 1000);
+    }
+    pingpong1 = !pingpong1;
+}
+
+window.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() === "c") {
+        e.preventDefault();
+        e.stopPropagation();
         toggleChatSpamMode();
     }
-}
-window.addEventListener("keydown", handleKeyBind);
-
-function handleMuteChat() {
-    chatMuted = this.checked;
-    console.log("chat muted status", chatMuted);
-    if (chatMuted) {
-        //chatDisplay.innerHTML = "";
-        packet("6", "")
+    if (e.key.toLowerCase() === "p") {
+        e.preventDefault();
+        e.stopPropagation();
+        $(".modmenu").toggle('fade-out');
     }
-}
-document.getElementById('mutechat').addEventListener('change', handleMuteChat);
-
-function handleLoogSong() {
-    loopSong = this.checked;
-    console.log("loop song status", loopSong);
-}
-document.getElementById('loopsong').addEventListener('change', handleLoogSong);
-
-function handleSongSelection() {
-    let pressedOnStatus = this.checked ? "opened" : "closed";
-    console.log("selection song menu status", pressedOnStatus);
-}
-
-document.addEventListener("keydown", (event) => {
-    let key = event.key.toLowerCase();
-    if (key == "p") {
-        let modMenu = $(".modmenu");
-        modMenu.toggle('fade-out'); //adds cool fade-out
+    if (e.key.toLowerCase() === "u") {
+        togglepingpong();
     }
+}, true);
+
+window.stopMusic = function () {
+    spamModeActive = false;
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio.loop = false;
+        currentAudio = null;
+    }
+    if (onTimeUpdateHandler && currentAudio) {
+        currentAudio.removeEventListener("timeupdate", onTimeUpdateHandler);
+    }
+    messageTimeouts.forEach(clearTimeout);
+    messageTimeouts = [];
+    messageTimeouts.length = 0;
+    currentlyPlaying.innerText = "Currently Playing: none";
+    musicStatus.innerText = "Music Status: OFF";
+};
+
+window.addEventListener("beforeunload", () => {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio.loop = false;
+        currentAudio = null;
+    }
+    messageTimeouts.forEach(clearTimeout);
+    messageTimeouts = [];
+    messageTimeouts.length = 0;
 });
+
+function initializeChats(songId) {
+    if (songId === 0) {
+        return [{chat:"La, la, la, la-la-la",delay:1290},{chat:"La, la-la-la, la, la-la-la",delay:3480},{chat:"A hopeless romantic",delay:8350},{chat:"all my life",delay:9890},{chat:"Surrounded by couples",delay:11520},{chat:"all the time",delay:13180},{chat:"I guess I should take it",delay:14850},{chat:"as a sign",delay:16610},{chat:"(Oh why, oh why, oh why?)",delay:18290},{chat:"I'm feeling lonely",delay:20300},{chat:"(Lonely)",delay:21730},{chat:"Oh, I wish I'd find a lover",delay:22310},{chat:"that could hold me",delay:23660},{chat:"(Hold me)",delay:24980},{chat:"Now, I'm crying in my room",delay:25690},{chat:"So skeptical of love",delay:27650},{chat:"But still, I want it",delay:30400},{chat:"more, more, more",delay:30990},{chat:"I gave a second chance",delay:33350},{chat:"to Cupid",delay:34250},{chat:"But now, I'm left here",delay:36330},{chat:"feeling stupid",delay:37340},{chat:"Oh, the way he makes me feel",delay:40290},{chat:"That love isn't real",delay:42410},{chat:"Cupid is so dumb",delay:44120},{chat:"I look for his arrow every day",delay:48310},{chat:"I guess he got lost",delay:51520},{chat:"or flew away",delay:53020},{chat:"Waiting around is",delay:54560},{chat:"a waste",delay:54870},{chat:"(Waste)",delay:55480},{chat:"Been counting the days",delay:55810},{chat:"since November",delay:56430},{chat:"Is loving as good as they say?",delay:57570},{chat:"Now I'm so lonely",delay:62740},{chat:"(Lonely)",delay:61790},{chat:"Oh, I wish I'd find a lover",delay:62320},{chat:"that could hold me",delay:63940},{chat:"(Hold me)",delay:64990},{chat:"Now, I'm crying in my room",delay:65600},{chat:"So skeptical of love",delay:67676},{chat:"But still, I want it",delay:70040},{chat:"more, more, more",delay:70880},{chat:"I gave a second chance",delay:72850},{chat:"to Cupid",delay:74030},{chat:"But now, I'm left here",delay:76230},{chat:"feeling stupid",delay:77400},{chat:"Oh, the way he makes me feel",delay:80130},{chat:"That love isn't real",delay:82190},{chat:"Cupid is so dumb",delay:83920},{chat:"Hopeless girl is seeking",delay:100840},{chat:"Someone who will",delay:104120},{chat:"share this feeling",delay:105500},{chat:"I'm a fool",delay:107590},{chat:"A fool for love,",delay:109900},{chat:"a fool for love",delay:111510},{chat:"I gave a second chance",delay:114450},{chat:"to Cupid",delay:115750},{chat:"But now, I'm left here",delay:117780},{chat:"feeling stupid",delay:118840},{chat:"Oh, the way he makes me feel",delay:121740},{chat:"That love isn't real",delay:123780},{chat:"Cupid is so dumb",delay:125700},{chat:"I gave a second chance",delay:127900},{chat:"to Cupid",delay:129140},{chat:"But now, I'm left here",delay:121310},{chat:"feeling stupid",delay:132200},{chat:"Oh, the way he makes me feel",delay:135140},{chat:"That love isn't real",delay:137150},{chat:"Cupid is so dumb",delay:139070},{chat:"Lyrics Made By Wolfi-chan",delay:143180}];
+    } else if (songId === 1) {
+        return [{
+                chat: "songid1",
+                delay: 0
+            }
+        ];
+    }
+    return [];
+}
