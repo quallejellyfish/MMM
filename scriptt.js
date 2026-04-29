@@ -1,9 +1,10 @@
-let wrapper, selectBtn, searchInp, durations1, optionsDiv;
+let wrapper, selectBtn, searchInp, durations1, optionsDiv, chatDisplay;
 wrapper = document.querySelector(".wrapper");
 selectBtn = wrapper.querySelector(".select-btn");
 searchInp = wrapper.querySelector("input");
 durations1 = wrapper.querySelector(".durations");
 optionsDiv = wrapper.querySelector(".options1");
+chatDisplay = document.querySelector(".chatDisplay");
 
 selectBtn.addEventListener("click", () => {
     console.log("menu open");
