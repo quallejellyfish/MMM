@@ -80,12 +80,12 @@ searchInp.addEventListener("keyup", () => {
     });
 });
 
-function turnIntoMS(t, n) {
+/*function turnIntoMS(t, n) {
     let a = 0;
     a += 1e3 * n;
     a += 6e4 * t;
     return a;
-}
+}*/
 
 let spamModeActive = false,
     messageTimeouts = [],
@@ -109,7 +109,7 @@ function scheduleMessages(messages) {
         let currentMs = currentAudio.currentTime * 1000;
 
         while (i < messages.length && messages[i].delay <= currentMs) {
-            if (!chatMuted) packet("6", messages[i].chat);
+            if (!chatMuted) chatDisplay.innerHTML = messages[i].chat;
             i++;
         }
 
@@ -208,7 +208,7 @@ function toggleChatSpamMode() {
 
 document.getElementById('mutechat').addEventListener('change', function () {
     chatMuted = this.checked;
-    if (chatMuted) packet("6", "");
+    if (chatMuted) chatDisplay.innerHTML = "";
 });
 
 document.getElementById('loopsong').addEventListener('change', function () {
@@ -258,20 +258,6 @@ async function sendTopSongs() {
     await sendMessageToDiscord(text, webhookURL);
 }
 
-let pingpong1 = false, interval;
-function pingpong() {
-    packet("6", window.pingTime + "'pingpong");
-}
-
-function togglepingpong() {
-    if (pingpong1) {
-        clearInterval(interval);
-    } else {
-        interval = setInterval(pingpong, 1000);
-    }
-    pingpong1 = !pingpong1;
-}
-
 window.addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === "c") {
         e.preventDefault();
@@ -282,9 +268,6 @@ window.addEventListener("keydown", (e) => {
         e.preventDefault();
         e.stopPropagation();
         $(".modmenu").toggle('fade-out');
-    }
-    if (e.key.toLowerCase() === "u") {
-        togglepingpong();
     }
 }, true);
 
