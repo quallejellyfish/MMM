@@ -512,6 +512,7 @@ body {
 .autoplay-btn:nth-child(7){transition-delay:.23s;}
 .autoplay-btn:nth-child(8){transition-delay:.26s;}
 .autoplay-btn:nth-child(9){transition-delay:.29s;}
+.autoplay-btn:nth-child(10){transition-delay:.32s;}
 
 .autoplay-btn:hover {
     transform: translateY(-2px) scale(1.05);
