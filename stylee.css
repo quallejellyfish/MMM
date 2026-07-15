@@ -206,7 +206,7 @@
 input {
     background: -webkit-linear-gradient(#eee, #333);
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+   /*-webkit-text-fill-color: transparent;*/
 }
 
 ::selection {
@@ -440,7 +440,8 @@ body {
     font-family: 'Hammersmith One';
 }
 
-.autoplay-section {
+.autoplay-section,
+.syncsongs-section {
     margin: 10px 0;
     padding: 10px;
     background: rgba(255,255,255,.05);
@@ -448,11 +449,13 @@ body {
     transition: background .25s ease;
 }
 
-.autoplay-section:hover {
+.autoplay-section:hover,
+.syncsongs-section:hover {
     background: rgba(255,255,255,.07);
 }
 
-#autoplayToggle {
+#autoplayToggle,
+#syncToggle {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -461,11 +464,13 @@ body {
     transition: color .2s ease;
 }
 
-#autoplayToggle:hover {
+#autoplayToggle:hover,
+#syncToggle:hover {
     color: #ff79c6;
 }
 
-#autoplayButtonsContainer {
+#autoplayButtonsContainer,
+#syncButtonsContainer {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
@@ -481,7 +486,8 @@ body {
     pointer-events: none;
 }
 
-.autoplay-section.open #autoplayButtonsContainer {
+.autoplay-section.open #autoplayButtonsContainer,
+.syncsongs-section.open #syncButtonsContainer {
     max-height: 300px;
     opacity: 1;
     transform: translateY(0);
@@ -489,7 +495,8 @@ body {
     pointer-events: auto;
 }
 
-.autoplay-btn {
+.autoplay-btn,
+.sync-btn {
     transform: translateY(-10px) scale(.95);
     opacity: 0;
     transition:
@@ -498,30 +505,37 @@ body {
         box-shadow .2s ease;
 }
 
-.autoplay-section.open .autoplay-btn {
+.autoplay-section.open .autoplay-btn,
+.syncsongs-section.open .sync-btn {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
 
-.autoplay-btn:nth-child(1){transition-delay:.05s;}
-.autoplay-btn:nth-child(2){transition-delay:.08s;}
-.autoplay-btn:nth-child(3){transition-delay:.11s;}
-.autoplay-btn:nth-child(4){transition-delay:.14s;}
-.autoplay-btn:nth-child(5){transition-delay:.17s;}
-.autoplay-btn:nth-child(6){transition-delay:.20s;}
-.autoplay-btn:nth-child(7){transition-delay:.23s;}
-.autoplay-btn:nth-child(8){transition-delay:.26s;}
-.autoplay-btn:nth-child(9){transition-delay:.29s;}
-.autoplay-btn:nth-child(10){transition-delay:.32s;}
+.autoplay-btn:nth-child(1),
+.sync-btn:nth-child(1) { transition-delay: .05s; }
+.autoplay-btn:nth-child(2),
+.sync-btn:nth-child(2) { transition-delay: .08s; }
+.autoplay-btn:nth-child(3),
+.sync-btn:nth-child(3) { transition-delay: .11s; }
+.autoplay-btn:nth-child(4),
+.sync-btn:nth-child(4) { transition-delay: .14s; }
+.autoplay-btn:nth-child(5),
+.sync-btn:nth-child(5) { transition-delay: .17s; }
+.autoplay-btn:nth-child(6),
+.sync-btn:nth-child(6) { transition-delay: .20s; }
+.autoplay-btn:nth-child(7),
+.sync-btn:nth-child(7) { transition-delay: .23s; }
+.autoplay-btn:nth-child(8),
+.sync-btn:nth-child(8) { transition-delay: .26s; }
+.autoplay-btn:nth-child(9),
+.sync-btn:nth-child(9) { transition-delay: .29s; }
+.autoplay-btn:nth-child(10),
+.sync-btn:nth-child(10) { transition-delay: .32s; }
 
-.autoplay-btn:hover {
+.autoplay-btn:hover,
+.sync-btn:hover {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 0 12px rgba(255,121,198,.45);
-}
-
-.autoplay-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 12px rgba(255, 121, 198, 0.4);
 }
 
 #stopAutoplayBtn:hover {
