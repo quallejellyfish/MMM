@@ -159,11 +159,11 @@
 
 .menuColor {
     color: #fff;
-    padding-left: 15px;
     border-radius: 15px;
     background: linear-gradient(to bottom, #e71818, #1f26ba);
-    padding-top: 15px;
-    padding-bottom: 20px;
+    padding: 15px 0 20px 15px;
+    max-height: 45rem;
+    overflow-y: scroll;
 }
 
 .infoText {
