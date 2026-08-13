@@ -4,11 +4,9 @@
     0% {
         transform: translate(-50%, -50%) scale(0);
     }
-
     50% {
         transform: translate(-50%, -50%) scale(1.1);
     }
-
     100% {
         transform: translate(-50%, -50%) scale(1);
     }
@@ -19,11 +17,9 @@
         background-color: transparent;
         transform: rotate(0deg);
     }
-
     50% {
         transform: rotate(90deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
@@ -54,7 +50,6 @@
 }
 
 .modmenu.fade-out {
-    /* super cool fade-out animation */
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.9);
 }
@@ -92,7 +87,6 @@
     filter: blur(20px);
     opacity: 1;
     inset: 0;
-    /* in my opinion inset > topleftrightbottom = 0*/
     z-index: -1;
 }
 
@@ -101,11 +95,9 @@
     position: absolute;
     text-align: center;
     color: white;
-    /* if your browser doesnt support gradient */
     background: #ff00f2;
     border: #2a003c 3px solid;
     background: radial-gradient(circle, #ff00f2 40%, #2c1c29 85%);
-    /*2c1c29 is from pulary's profile*/
     transform: translateY(100px);
     transition: transform 0.5s ease, opacity 0.5s ease;
     opacity: 0;
@@ -129,14 +121,12 @@
     border-width: 9px;
 }
 
-
 .HoverText:hover+.informationText {
     opacity: 1;
     visibility: visible;
     transform: translateY(0px);
 }
 
-/* i know you can just combind them but for the names ;d*/
 .muteChat {
     display: inline-flex;
     align-items: center;
@@ -207,14 +197,12 @@
     left: 30.5%;
     font-size: 2.5rem;
     justify-content: flex-start;
-
 }
 
 @keyframes spin {
     0% {
         --rotate: 0deg;
     }
-
     100% {
         --rotate: 360deg;
     }
@@ -223,7 +211,6 @@
 input {
     background: -webkit-linear-gradient(#eee, #333);
     background-clip: text;
-   /*-webkit-text-fill-color: transparent;*/
 }
 
 ::selection {
@@ -233,7 +220,6 @@ input {
 
 .wrapper {
     width: 370px;
-    /*margin: 85px auto 0;*/
 }
 
 .select-btn,
@@ -337,7 +323,6 @@ li {
     max-height: 220px;
 }
 
-/*hide the scrollbar on left*/
 .options::-webkit-scrollbar {
     display: none;
 }
@@ -383,7 +368,6 @@ li.selected {
 .title {
     font-size: 25px;
     padding: 0px 10px 5px 20px;
-    /* top, right, bottom, left */
     border-bottom: 2px solid #ffff;
 }
 
@@ -397,7 +381,6 @@ li.selected {
     cursor: pointer;
 }
 
-/* hides the default checkbox */
 .custom-checkbox input {
     display: none;
 }
@@ -406,7 +389,6 @@ li.selected {
     position: relative;
     display: inline-block;
     font-size: 20px;
-    /* adjust  height and width of the checkbox */
     width: 24px;
     height: 24px;
     background-color: transparent;
@@ -415,30 +397,23 @@ li.selected {
     transition: background-color 0.3s, border-color 0.5s;
 }
 
-/* checkmark style */
 .custom-checkbox label:after {
     content: "✓";
-    /*proffesional copy pasted checkamrk from gogle*/
     position: absolute;
     left: 25%;
     top: -10%;
-    /* goofy rotation */
     transform: rotate(180deg);
     color: #8a2ad0;
     opacity: 0;
-    /* t r a n s i t i o n */
     transition: opacity 0.3s, color 0.5s, transform 1.25s;
-    /* pls give me this ms */
     transition-delay: 1ms;
 }
 
 .custom-checkbox input:checked+label:after {
     opacity: 1;
-    /* goofy rotation */
     transform: rotateY(360deg);
 }
 
-/* when its checked  */
 .custom-checkbox input:checked+label {
     animation: swirl 0.6s ease-in-out;
     background-color: #500a50;
@@ -458,21 +433,24 @@ body {
 }
 
 .autoplay-section,
-.syncsongs-section {
+.syncsongs-section,
+.stats-section {
     margin: 10px 0;
     padding: 10px;
-    background: rgba(255,255,255,.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     transition: background .25s ease;
 }
 
 .autoplay-section:hover,
-.syncsongs-section:hover {
-    background: rgba(255,255,255,.07);
+.syncsongs-section:hover,
+.stats-section:hover {
+    background: rgba(255, 255, 255, 0.07);
 }
 
 #autoplayToggle,
-#syncToggle {
+#syncToggle,
+#statsToggle {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -482,35 +460,88 @@ body {
 }
 
 #autoplayToggle:hover,
-#syncToggle:hover {
+#syncToggle:hover,
+#statsToggle:hover {
     color: #ff79c6;
 }
 
 #autoplayButtonsContainer,
-#syncButtonsContainer {
+#syncButtonsContainer,
+#statsContent {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
     transform: translateY(-15px);
     transition:
-        max-height .45s cubic-bezier(.22,1,.36,1),
+        max-height .45s cubic-bezier(.22, 1, .36, 1),
         opacity .3s ease,
         transform .4s ease;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
     margin-top: 0;
     pointer-events: none;
 }
 
 .autoplay-section.open #autoplayButtonsContainer,
-.syncsongs-section.open #syncButtonsContainer {
+.syncsongs-section.open #syncButtonsContainer,
+.stats-section.open #statsContent {
     max-height: 300px;
     opacity: 1;
     transform: translateY(0);
     margin-top: 10px;
     pointer-events: auto;
 }
+
+#statsContent .stats-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#statsContent input {
+    flex: 1;
+    min-width: 100px;
+    padding: 4px 8px;
+    background: #3a3a4a;
+    border: 1px solid #555;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+}
+
+#statsContent .stats-status {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+.stats-btn {
+    background: #2ecc71;
+    border: none;
+    color: #1e1e2f;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.stats-btn.upload {
+    background: #3498db;
+    color: #fff;
+}
+
+.stats-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 121, 198, 0.45);
+}
+
+.stats-btn.upload:hover {
+    box-shadow: 0 0 12px rgba(52, 152, 219, 0.45);
+}
+
+.stats-btn:nth-child(1) { transition-delay: .05s; }
+.stats-btn:nth-child(2) { transition-delay: .08s; }
 
 .autoplay-btn,
 .sync-btn {
@@ -552,7 +583,7 @@ body {
 .autoplay-btn:hover,
 .sync-btn:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 0 12px rgba(255,121,198,.45);
+    box-shadow: 0 0 12px rgba(255, 121, 198, 0.45);
 }
 
 #stopAutoplayBtn:hover {
@@ -563,7 +594,8 @@ body {
     box-shadow: 0 0 12px rgba(255, 180, 70, 0.5) !important;
 }
 
-.autoplay-status, .syncStatus {
+.autoplay-status,
+.syncStatus {
     font-size: 13px;
     color: #aaa;
     margin-top: 4px;
@@ -574,10 +606,11 @@ body {
     max-height: 0;
     opacity: 0;
     transform: translateY(-15px);
-    transition: max-height 0.45s cubic-bezier(.22,1,.36,1), opacity 0.3s ease, transform 0.4s ease;
+    transition: max-height 0.45s cubic-bezier(.22, 1, .36, 1), opacity 0.3s ease, transform 0.4s ease;
     margin-top: 0;
     pointer-events: none;
 }
+
 .syncsongs-section.open .sync-buttons {
     max-height: 150px;
     opacity: 1;
