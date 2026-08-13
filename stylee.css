@@ -171,7 +171,7 @@
 }
 
 .menuColor::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: #871b2f;
 }
 
 .menuColor::-webkit-scrollbar-thumb {
@@ -180,7 +180,7 @@
 }
 
 .menuColor::-webkit-scrollbar-thumb:hover {
-    background-color: #401e00;
+    background-color: transparent;
 }
 
 .infoText {
