@@ -1,35 +1,17 @@
 @import url(https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap);
 
 @keyframes pop-up {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-    }
-
-    50% {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
+    0% { transform: translate(-50%, -50%) scale(0); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes swirl {
-    0% {
-        background-color: transparent;
-        transform: rotate(0deg);
-    }
-
-    50% {
-        transform: rotate(90deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { background-color: transparent; transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
+    100% { transform: rotate(360deg); }
 }
 
-/* rotates the border color */
 @property --rotate {
     syntax: "<angle>";
     initial-value: 132deg;
@@ -54,7 +36,6 @@
 }
 
 .modmenu.fade-out {
-    /* super cool fade-out animation */
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.9);
 }
@@ -65,7 +46,6 @@
     }
 }
 
-/*CREDITS: https://codepen.io/gayane-gasparyan/pen/jOmaBQK*/
 .modmenu::before {
     content: "";
     background-image: linear-gradient(var(--rotate),
@@ -92,8 +72,33 @@
     filter: blur(20px);
     opacity: 1;
     inset: 0;
-    /* in my opinion inset > topleftrightbottom = 0*/
     z-index: -1;
+}
+
+.menuColor {
+    color: #fff;
+    padding: 15px 15px 20px 15px;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #e71818, #1f26ba);
+    overflow-y: auto;
+    max-height: 80vh;
+    scrollbar-width: thin;
+    scrollbar-color: #8a2ad0 rgba(255,255,255,0.15);
+}
+
+.menuColor::-webkit-scrollbar {
+    width: 6px;
+}
+.menuColor::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+.menuColor::-webkit-scrollbar-thumb {
+    background: #8a2ad0;
+    border-radius: 10px;
+}
+.menuColor::-webkit-scrollbar-thumb:hover {
+    background: #a43be0;
 }
 
 .informationText {
@@ -101,11 +106,9 @@
     position: absolute;
     text-align: center;
     color: white;
-    /* if your browser doesnt support gradient */
     background: #ff00f2;
     border: #2a003c 3px solid;
     background: radial-gradient(circle, #ff00f2 40%, #2c1c29 85%);
-    /*2c1c29 is from pulary's profile*/
     transform: translateY(100px);
     transition: transform 0.5s ease, opacity 0.5s ease;
     opacity: 0;
@@ -129,21 +132,13 @@
     border-width: 9px;
 }
 
-
-.HoverText:hover+.informationText {
+.HoverText:hover + .informationText {
     opacity: 1;
     visibility: visible;
     transform: translateY(0px);
 }
 
-/* i know you can just combind them but for the names ;d*/
-.muteChat {
-    display: inline-flex;
-    align-items: center;
-    padding-bottom: 14px;
-    font-size: 17px;
-}
-
+.muteChat,
 .loopSong {
     display: inline-flex;
     align-items: center;
@@ -154,15 +149,6 @@
 .header {
     font-size: 30px;
     text-align: center;
-    padding-bottom: 20px;
-}
-
-.menuColor {
-    color: #fff;
-    padding-left: 15px;
-    border-radius: 15px;
-    background: linear-gradient(to bottom, #e71818, #1f26ba);
-    padding-top: 15px;
     padding-bottom: 20px;
 }
 
@@ -190,23 +176,17 @@
     left: 30.5%;
     font-size: 2.5rem;
     justify-content: flex-start;
-
 }
 
 @keyframes spin {
-    0% {
-        --rotate: 0deg;
-    }
-
-    100% {
-        --rotate: 360deg;
-    }
+    0% { --rotate: 0deg; }
+    100% { --rotate: 360deg; }
 }
 
 input {
     background: -webkit-linear-gradient(#eee, #333);
     background-clip: text;
-   /*-webkit-text-fill-color: transparent;*/
+    /* -webkit-text-fill-color: transparent; */
 }
 
 ::selection {
@@ -216,7 +196,6 @@ input {
 
 .wrapper {
     width: 370px;
-    /*margin: 85px auto 0;*/
 }
 
 .select-btn,
@@ -320,7 +299,6 @@ li {
     max-height: 220px;
 }
 
-/*hide the scrollbar on left*/
 .options::-webkit-scrollbar {
     display: none;
 }
@@ -366,7 +344,6 @@ li.selected {
 .title {
     font-size: 25px;
     padding: 0px 10px 5px 20px;
-    /* top, right, bottom, left */
     border-bottom: 2px solid #ffff;
 }
 
@@ -380,7 +357,6 @@ li.selected {
     cursor: pointer;
 }
 
-/* hides the default checkbox */
 .custom-checkbox input {
     display: none;
 }
@@ -389,7 +365,6 @@ li.selected {
     position: relative;
     display: inline-block;
     font-size: 20px;
-    /* adjust  height and width of the checkbox */
     width: 24px;
     height: 24px;
     background-color: transparent;
@@ -398,31 +373,24 @@ li.selected {
     transition: background-color 0.3s, border-color 0.5s;
 }
 
-/* checkmark style */
 .custom-checkbox label:after {
     content: "✓";
-    /*proffesional copy pasted checkamrk from gogle*/
     position: absolute;
     left: 25%;
     top: -10%;
-    /* goofy rotation */
     transform: rotate(180deg);
     color: #8a2ad0;
     opacity: 0;
-    /* t r a n s i t i o n */
     transition: opacity 0.3s, color 0.5s, transform 1.25s;
-    /* pls give me this ms */
     transition-delay: 1ms;
 }
 
-.custom-checkbox input:checked+label:after {
+.custom-checkbox input:checked + label:after {
     opacity: 1;
-    /* goofy rotation */
     transform: rotateY(360deg);
 }
 
-/* when its checked  */
-.custom-checkbox input:checked+label {
+.custom-checkbox input:checked + label {
     animation: swirl 0.6s ease-in-out;
     background-color: #500a50;
     border-color: #8a2ad0;
@@ -441,7 +409,8 @@ body {
 }
 
 .autoplay-section,
-.syncsongs-section {
+.syncsongs-section,
+.stats-section {
     margin: 10px 0;
     padding: 10px;
     background: rgba(255,255,255,.05);
@@ -450,12 +419,14 @@ body {
 }
 
 .autoplay-section:hover,
-.syncsongs-section:hover {
+.syncsongs-section:hover,
+.stats-section:hover {
     background: rgba(255,255,255,.07);
 }
 
 #autoplayToggle,
-#syncToggle {
+#syncToggle,
+#statsToggle {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -465,12 +436,14 @@ body {
 }
 
 #autoplayToggle:hover,
-#syncToggle:hover {
+#syncToggle:hover,
+#statsToggle:hover {
     color: #ff79c6;
 }
 
 #autoplayButtonsContainer,
-#syncButtonsContainer {
+#syncButtonsContainer,
+#statsContent {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
@@ -487,7 +460,8 @@ body {
 }
 
 .autoplay-section.open #autoplayButtonsContainer,
-.syncsongs-section.open #syncButtonsContainer {
+.syncsongs-section.open #syncButtonsContainer,
+.stats-section.open #statsContent {
     max-height: 300px;
     opacity: 1;
     transform: translateY(0);
@@ -506,31 +480,22 @@ body {
 }
 
 .autoplay-section.open .autoplay-btn,
-.syncsongs-section.open .sync-btn {
+.syncsongs-section.open .sync-btn,
+.stats-section.open .stats-btn {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
 
-.autoplay-btn:nth-child(1),
-.sync-btn:nth-child(1) { transition-delay: .05s; }
-.autoplay-btn:nth-child(2),
-.sync-btn:nth-child(2) { transition-delay: .08s; }
-.autoplay-btn:nth-child(3),
-.sync-btn:nth-child(3) { transition-delay: .11s; }
-.autoplay-btn:nth-child(4),
-.sync-btn:nth-child(4) { transition-delay: .14s; }
-.autoplay-btn:nth-child(5),
-.sync-btn:nth-child(5) { transition-delay: .17s; }
-.autoplay-btn:nth-child(6),
-.sync-btn:nth-child(6) { transition-delay: .20s; }
-.autoplay-btn:nth-child(7),
-.sync-btn:nth-child(7) { transition-delay: .23s; }
-.autoplay-btn:nth-child(8),
-.sync-btn:nth-child(8) { transition-delay: .26s; }
-.autoplay-btn:nth-child(9),
-.sync-btn:nth-child(9) { transition-delay: .29s; }
-.autoplay-btn:nth-child(10),
-.sync-btn:nth-child(10) { transition-delay: .32s; }
+.autoplay-btn:nth-child(1) { transition-delay: .05s; }
+.autoplay-btn:nth-child(2) { transition-delay: .08s; }
+.autoplay-btn:nth-child(3) { transition-delay: .11s; }
+.autoplay-btn:nth-child(4) { transition-delay: .14s; }
+.autoplay-btn:nth-child(5) { transition-delay: .17s; }
+.autoplay-btn:nth-child(6) { transition-delay: .20s; }
+.autoplay-btn:nth-child(7) { transition-delay: .23s; }
+.autoplay-btn:nth-child(8) { transition-delay: .26s; }
+.autoplay-btn:nth-child(9) { transition-delay: .29s; }
+.autoplay-btn:nth-child(10) { transition-delay: .32s; }
 
 .autoplay-btn:hover,
 .sync-btn:hover {
@@ -546,25 +511,67 @@ body {
     box-shadow: 0 0 12px rgba(255, 180, 70, 0.5) !important;
 }
 
-.autoplay-status, .syncStatus {
+.autoplay-status,
+.syncStatus {
     font-size: 13px;
     color: #aaa;
     margin-top: 4px;
 }
 
-.sync-buttons {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-15px);
-    transition: max-height 0.45s cubic-bezier(.22,1,.36,1), opacity 0.3s ease, transform 0.4s ease;
-    margin-top: 0;
-    pointer-events: none;
+#statsContent {
+    display: block;
+    flex-wrap: unset;
+    gap: unset;
 }
-.syncsongs-section.open .sync-buttons {
-    max-height: 150px;
-    opacity: 1;
-    transform: translateY(0);
-    margin-top: 10px;
-    pointer-events: auto;
+
+.stats-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.stats-content-inner .stats-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.stats-content-inner input[type="text"] {
+    flex: 1;
+    min-width: 100px;
+    padding: 4px 8px;
+    background: #3a3a4a;
+    border: 1px solid #555;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+}
+
+.stats-content-inner button {
+    background: #2ecc71;
+    border: none;
+    color: #1e1e2f;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: background .2s;
+}
+
+.stats-content-inner button#uploadStatsBtn {
+    background: #3498db;
+    color: #fff;
+}
+
+.stats-content-inner button:hover {
+    filter: brightness(1.1);
+}
+
+#statsStatus {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
 }
