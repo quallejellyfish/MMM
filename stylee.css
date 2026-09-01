@@ -124,6 +124,10 @@
     border-width: 9px;
 }
 
+.HoverText {
+    font-size: 17.5px !important;
+}
+
 .HoverText:hover+.informationText {
     opacity: 1;
     visibility: visible;
