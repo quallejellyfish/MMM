@@ -52,6 +52,9 @@
 .modmenu.fade-out {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.9);
+    pointer-events: none;
+    visibility: hidden; 
+    transform: translate(-50%, -50%) scale(0.9), visibility 0.3s ease;
 }
 
 @media (hover: hover) {
