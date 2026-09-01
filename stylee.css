@@ -134,18 +134,18 @@
     display: inline-flex;
     align-items: center;
     padding-bottom: 14px;
-    font-size: 17px;
+    font-size: 17px !important;
 }
 
 .loopSong {
     display: inline-flex;
     align-items: center;
     padding-bottom: 14px;
-    font-size: 17px;
+    font-size: 17px !important;
 }
 
 .header {
-    font-size: 30px;
+    font-size: 30px !important;
     text-align: center;
     padding-bottom: 20px;
 }
@@ -179,13 +179,13 @@
 .infoText {
     line-height: 30px;
     margin-bottom: 10px;
-    font-size: 17px;
+    font-size: 17px !important;
 }
 
 .infoStatuses {
     line-height: 40px;
     margin-bottom: 10px;
-    font-size: 17px;
+    font-size: 17px !important;
 }
 
 .chatDisplay {
@@ -198,7 +198,7 @@
     border: orange;
     top: 80%;
     left: 30.5%;
-    font-size: 2.5rem;
+    font-size: 2.5rem !important;
     justify-content: flex-start;
 }
 
@@ -237,7 +237,7 @@ li {
 
 .select-btn {
     padding: 0 20px;
-    font-size: 22px;
+    font-size: 22px !important;
     background: linear-gradient(lavender, indigo);
     border-radius: 7px;
     display: initial;
@@ -245,7 +245,7 @@ li {
 }
 
 .select-btn i {
-    font-size: 31px;
+    font-size: 31px !important;
     transition: transform 0.3s linear;
 }
 
@@ -283,7 +283,7 @@ li {
     top: 50%;
     left: 15px;
     color: #999;
-    font-size: 20px;
+    font-size: 20px !important;
     pointer-events: none;
     transform: translateY(-50%);
     position: absolute;
@@ -293,7 +293,7 @@ li {
     height: 40px;
     width: 70%;
     outline: none;
-    font-size: 17px;
+    font-size: 17px !important;
     border-radius: 5px;
     padding: 0 20px 0 43px;
     border: 1px solid #B3B3B3;
@@ -351,7 +351,7 @@ li {
 .options1 li {
     height: 50px;
     padding: 6px 6px;
-    font-size: 20px;
+    font-size: 20px !important;
 }
 
 .options1 li:hover,
@@ -363,13 +363,13 @@ li.selected {
 .heading {
     display: flex;
     margin-top: 15px;
-    font-size: 25px;
+    font-size: 25px !important;
     overflow: hidden;
     position: relative;
 }
 
 .title {
-    font-size: 25px;
+    font-size: 25px !important;
     padding: 0px 10px 5px 20px;
     border-bottom: 2px solid #ffff;
 }
@@ -391,7 +391,7 @@ li.selected {
 .custom-checkbox label {
     position: relative;
     display: inline-block;
-    font-size: 20px;
+    font-size: 20px !important;
     width: 24px;
     height: 24px;
     background-color: transparent;
@@ -508,11 +508,11 @@ body {
     border: 1px solid #555;
     border-radius: 6px;
     color: #fff;
-    font-size: 13px;
+    font-size: 13px !important;
 }
 
 #statsContent .stats-status {
-    font-size: 12px;
+    font-size: 12px !important;
     color: #aaa;
     margin-top: 4px;
 }
@@ -525,7 +525,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 12px !important;
     transition: transform .2s ease, box-shadow .2s ease;
 }
 
@@ -599,7 +599,7 @@ body {
 
 .autoplay-status,
 .syncStatus {
-    font-size: 13px;
+    font-size: 13px !important;
     color: #aaa;
     margin-top: 4px;
 }
