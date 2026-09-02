@@ -625,6 +625,6 @@ body {
     margin-top: 10px;
     pointer-events: auto;
 }
-#volumeslider, .modmenu {
+#volumeSlider, .modmenu {
     overflow: visible !important;
 }
