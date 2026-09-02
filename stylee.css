@@ -35,7 +35,9 @@
 :root {
     --modmenu-width: 400px;
 }
-
+.menuColor::-webkit-scrollbar, .scrollbar::-webkit-scrollbar {
+    display: block !important;
+}
 .modmenu {
     display: block;
     position: absolute;
