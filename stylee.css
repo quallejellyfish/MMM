@@ -409,8 +409,8 @@ li.selected {
 .custom-checkbox label:after {
     content: "✓";
     position: absolute;
-    left: 25%;
-    top: -10%;
+    left: 20%;
+    top: -20%;
     transform: rotate(180deg);
     color: #8a2ad0;
     opacity: 0;
