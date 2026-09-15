@@ -497,8 +497,11 @@ body {
     transform: translateY(0);
     margin-top: 10px;
     pointer-events: auto;
+    line-height: 3;
 }
-
+#autoplayButtonsContainer {
+    line-height: 3;
+}
 #statsContent .stats-row {
     display: flex;
     align-items: center;
