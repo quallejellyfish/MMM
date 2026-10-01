@@ -564,7 +564,7 @@ body {
         opacity .35s ease,
         box-shadow .2s ease;
 }
-#makeLeaderBtn, #leaveSyncBtn, #joinSyncBtn, #lockRoomBtn {
+#makeLeaderBtn, #leaveSyncBtn, #joinSyncBtn, #lockRoomBtn, #browseRoomsBtn {
     border: none;
     padding: 4px 12px;
     border-radius: 6px;
@@ -583,6 +583,9 @@ body {
 }
 #lockRoomBtn {
     background: #e67e22; color: white;
+}
+#browseRoomsBtn {
+    background: #8e44ad; color: white;
 }
 
 .autoplay-section.open .autoplay-btn,
